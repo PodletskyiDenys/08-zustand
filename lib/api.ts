@@ -62,3 +62,7 @@ export async function fetchGetNoteById(id: string): Promise<Note> {
   const response = await api.get<Note>(`/notes/${id}`);
   return response.data;
 }
+const getBaseUrl = () =>
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
+
+export default getBaseUrl;
