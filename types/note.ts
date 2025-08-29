@@ -1,11 +1,3 @@
-export type Tag = 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';
-
-export interface NewNoteData {
-  title: string;
-  content: string;
-  tag: Tag;
-}
-
 export interface Note {
   id: string;
   title: string;
@@ -15,11 +7,10 @@ export interface Note {
   updatedAt: string;
 }
 
-export const initialDraft: NewNoteData = {
-  title: '',
-  content: '',
-  tag: 'Todo',
-};
+export interface NewNoteData {
+  title: string;
+  content: string;
+  tag: Tag;
+}
 
-// Для Zustand store
-export type Draft = NewNoteData;
+export type Tag = 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';

@@ -11,13 +11,15 @@ import css from '@/app/Home.module.css';
 import getBaseUrl from '@/lib/api';
 
 const roboto = Roboto({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto",
+  subsets: ['latin'], 
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-roboto', 
+  display: 'swap',  
 });
 
-export const metadata = {   metadataBase: new URL (getBaseUrl()),
+
+export const metadata: Metadata = {
+  metadataBase: new URL (getBaseUrl()),
   title: 'Note Hub',
   description: 'Manage your own notes',
   openGraph: {
@@ -34,12 +36,30 @@ export const metadata = {   metadataBase: new URL (getBaseUrl()),
         },
     ],
     type: 'article',     
-  } };
+  }
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+  modal,
+}: Readonly<{
+  children: React.ReactNode;
+  modal: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={`${roboto.variable}`}>
+        <Toaster position="top-center" />
+        <TanStackProvider>
+          <Header />
+          <main className={css.main}>
+            {children}
+            {modal}
+          </main>
+          <Footer />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </TanStackProvider>
+      </body>
     </html>
   );
 }
