@@ -9,8 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { addNote } from '@/lib/api';
 import { useRouter } from 'next/navigation';
-import { useNoteStore } from "@/lib/store/noteStore";
-
+import { useNoteDraftStore } from '@/lib/store/noteStore';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string()
@@ -27,7 +26,7 @@ export default function NoteForm() {
   const fieldId = useId();
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { draft, setDraft, clearDraft } = useNoteStore();
+  const { draft, setDraft, clearDraft } = useNoteDraftStore();
 
   const mutation = useMutation({
     mutationFn: addNote,
