@@ -77,3 +77,18 @@ export async function fetchGetNoteById(id: string): Promise<Note> {
   });
   return response.data;
 }
+
+// Отримати нотатку по id
+export async function fetchNoteById(id: string): Promise<Note | null> {
+  try {
+    const res = await api.get<Note>(`/notes/${id}`);
+    return res.data;
+  } catch {
+    return null;
+  }
+}
+
+export async function createNote(note: NewNoteData): Promise<Note> {
+  const res = await api.post<Note>("/notes", note);
+  return res.data;
+}

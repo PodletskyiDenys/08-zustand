@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { fetchGetNoteById } from "@/lib/api";
+import { fetchNoteById } from "@/lib/api";
+
 
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const note = await fetchGetNoteById(params.id);
+  const note = await fetchNoteById(id);
 
   const title = note ? `${note.title} | NoteHub` : "Note not found | NoteHub";
   const description = note
